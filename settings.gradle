@@ -1,1 +1,3 @@
 rootProject.name = 'boot-yourself'
+include 'iron-starter'
+
