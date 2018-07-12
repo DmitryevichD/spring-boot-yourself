@@ -1,6 +1,7 @@
 package com.ironbank;
 
 import com.ironbank.annotation.ConditionalOnProduction;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class IronConfiguration {
     @Bean
     @ConditionalOnProduction
-    public RavenListener ravenListener() {
-        return new RavenListener();
+    @ConditionalOnProperty("raven.where")
+    public RavenListener ravenListener(RavenProperties r) {
+        return new RavenListener(r);
     }
 
 }
